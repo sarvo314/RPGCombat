@@ -20,9 +20,20 @@ public class Mover : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            MoveToCursor();
         }
         Debug.DrawRay(ray.origin, ray.direction * 100);
-        player.SetDestination(target.transform.position);
+        //player.SetDestination(target.transform.position);
+    }
+
+    private void MoveToCursor()
+    {
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        bool hasHit = Physics.Raycast(ray, out hit);
+        if(hasHit)
+        {
+            player.SetDestination(hit.point);
+        }
     }
 }
