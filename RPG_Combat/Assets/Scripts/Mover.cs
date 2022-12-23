@@ -7,7 +7,6 @@ public class Mover : MonoBehaviour
 {
     [SerializeField] Transform target;
     NavMeshAgent player;
-    Ray ray;
     
     // Start is called before the first frame update
     void Start()
@@ -18,11 +17,6 @@ public class Mover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButton(0))
-        {
-            MoveToCursor();
-        }
-        Debug.DrawRay(ray.origin, ray.direction * 100);
         UpdateAnimator();
     }
 
@@ -34,14 +28,10 @@ public class Mover : MonoBehaviour
         float speed = localVelocity.z;
         GetComponent<Animator>().SetFloat("forwardSpeed", speed);
     }
-    private void MoveToCursor()
+    
+
+    public void MoveTo(Vector3 destination)
     {
-        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        bool hasHit = Physics.Raycast(ray, out hit);
-        if(hasHit)
-        {
-            player.SetDestination(hit.point);
-        }
+        player.SetDestination(destination);
     }
 }
