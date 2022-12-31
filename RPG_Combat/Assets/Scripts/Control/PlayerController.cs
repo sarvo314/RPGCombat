@@ -17,8 +17,8 @@ namespace RPG.Control
         // Update is called once per frame
         void Update()
         {
-            if(InteractWithCombat()) return;
-            if(InteractWithMovement()) return;
+            if (InteractWithCombat()) return;
+            if (InteractWithMovement()) return;
             Debug.Log("Cannot move");
 
         }
@@ -30,8 +30,9 @@ namespace RPG.Control
             {
                 CombatTarget combatTarget = hit.transform.GetComponent<CombatTarget>();
                 if (combatTarget == null) continue;
+                Debug.Log("Interacted with combat");
 
-                if(Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0))
                 {
                     GetComponent<Fighter>().Attack(combatTarget);
                 }
@@ -42,12 +43,16 @@ namespace RPG.Control
 
         private bool InteractWithMovement()
         {
+            Debug.Log("Interacted with movement");
+
             RaycastHit hit;
             bool hasHit = Physics.Raycast(GetMouseRay(), out hit);
             if (hasHit)
             {
-                if(Input.GetMouseButton(0))
+                if (Input.GetMouseButton(0))
                 {
+                    Debug.Log("We mofe");
+
                     mover.MoveTo(hit.point);
                 }
                 return true;
