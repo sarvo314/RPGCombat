@@ -25,6 +25,7 @@ namespace RPG.Control
 
         private bool InteractWithCombat()
         {
+
             RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
             foreach (RaycastHit hit in hits)
             {
@@ -38,12 +39,13 @@ namespace RPG.Control
                 }
                 return true;
             }
+
+            Debug.Log("Not interacted with combat");
             return false;
         }
 
         private bool InteractWithMovement()
         {
-            Debug.Log("Interacted with movement");
 
             RaycastHit hit;
             bool hasHit = Physics.Raycast(GetMouseRay(), out hit);
@@ -51,18 +53,23 @@ namespace RPG.Control
             {
                 if (Input.GetMouseButton(0))
                 {
-                    Debug.Log("We mofe");
+                    //Debug.Log("We mofe");
 
-                    mover.MoveTo(hit.point);
+                    mover.StartMoverAction(hit.point);
                 }
+                Debug.Log("Interacted with movement");
+
                 return true;
             }
+            Debug.Log("Not Interacted with movement");
             return false;
         }
 
         private static Ray GetMouseRay()
         {
-            return Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray lastRay;
+            lastRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            return lastRay;
         }
     }
 }

@@ -14,38 +14,46 @@ namespace RPG.Combat
         Transform target;
         private void Update()
         {
-            bool isInRange = Vector3.Distance(transform.position, target.position) < weaponRange;
             //Debug.Log($"distance b/w transform and target is {Vector3.Distance(transform.position, target.position)}, ie is in range - {isInRange}, target is nu;; {target == null}");
-            Debug.Log($"We are moving {target != null} && {!isInRange}");
+            //Debug.Log($"We are moving {target != null} && {!isInRange}");
 
-            if (isInRange && target != null)
+            //if (target != null)
+            //{
+            //bool isInRange = GetIsInRange();
+            if (target == null) return;
+            if (target != null && !GetIsInRange())
             {
-                GetComponent<Mover>().Stop();
-                target = null;
+                //    //target = null;
+                GetComponent<Mover>().MoveTo(target.position);
+                //    //target = null;
             }
             else
             {
-                GetComponent<Mover>().MoveTo(target.position);
+                GetComponent<Mover>().Stop();
             }
-
-            //if (target != null && isInRange)
+            //if (!isInRange && target == null)
             //{
-            //    Debug.Log("we are moving");
-            //    Debug.Log(target.position);
             //    GetComponent<Mover>().MoveTo(target.position);
-            //    //target = null;
-            //}
-            //else
-            //{
-            //    GetComponent<Mover>().Stop();
-            //}
 
+            //}
+            //if (isInRange && target != null)
+            //{
+            //}
+        }
+
+        private bool GetIsInRange()
+        {
+            return Vector3.Distance(transform.position, target.position) < weaponRange;
         }
 
         public void Attack(CombatTarget combatTarget)
         {
-            Debug.Log("Hit");
+            Debug.Log("Hit " + combatTarget);
             target = combatTarget.transform;
+        }
+        public void Cancel()
+        {
+            target = null;
         }
     }
 

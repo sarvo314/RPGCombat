@@ -29,9 +29,15 @@ namespace RPG.Movement
             navMeshAgent.isStopped = true;
         }
 
+        public void StartMoverAction(Vector3 destination)
+        {
+            GetComponent<Fighter>().Cancel();
+            MoveTo(destination);
+        }
+
         void UpdateAnimator()
         {
-            Vector3 velocity = GetComponent<NavMeshAgent>().velocity;
+            Vector3 velocity = navMeshAgent.velocity;
             //to convert into local velocity
             Vector3 localVelocity = transform.InverseTransformDirection(velocity);
             float speed = localVelocity.z;
@@ -41,9 +47,9 @@ namespace RPG.Movement
         {
             Debug.Log("We are moving from moveto");
 
-            navMeshAgent.isStopped = false;
             //navMeshAgent.SetDestination(destination);
             navMeshAgent.destination = destination;
+            navMeshAgent.isStopped = false;
         }
     }
 }
