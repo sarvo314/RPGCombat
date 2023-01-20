@@ -6,7 +6,7 @@ using RPG.Core;
 
 namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour
+    public class Fighter : MonoBehaviour, IAction
     {
         [SerializeField]
         float weaponRange = 2f;
@@ -14,12 +14,6 @@ namespace RPG.Combat
         Transform target;
         private void Update()
         {
-            //Debug.Log($"distance b/w transform and target is {Vector3.Distance(transform.position, target.position)}, ie is in range - {isInRange}, target is nu;; {target == null}");
-            //Debug.Log($"We are moving {target != null} && {!isInRange}");
-
-            //if (target != null)
-            //{
-            //bool isInRange = GetIsInRange();
             if (target == null) return;
             if (target != null && !GetIsInRange())
             {
@@ -29,16 +23,9 @@ namespace RPG.Combat
             }
             else
             {
-                GetComponent<Mover>().Stop();
+                GetComponent<Mover>().Cancel();
             }
-            //if (!isInRange && target == null)
-            //{
-            //    GetComponent<Mover>().MoveTo(target.position);
 
-            //}
-            //if (isInRange && target != null)
-            //{
-            //}
         }
 
         private bool GetIsInRange()

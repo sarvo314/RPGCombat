@@ -13,8 +13,6 @@ namespace RPG.Control
         {
             mover = GetComponent<Mover>();
         }
-
-        // Update is called once per frame
         void Update()
         {
             if (InteractWithCombat()) return;
@@ -53,8 +51,6 @@ namespace RPG.Control
             {
                 if (Input.GetMouseButton(0))
                 {
-                    //Debug.Log("We mofe");
-
                     mover.StartMoverAction(hit.point);
                 }
                 Debug.Log("Interacted with movement");
