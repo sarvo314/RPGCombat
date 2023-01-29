@@ -630,8 +630,9 @@ GameObject:
   - component: {fileID: 1460630999}
   - component: {fileID: 1460630998}
   - component: {fileID: 1460630997}
+  - component: {fileID: 1460631002}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -727,6 +728,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1460631002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1460630996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04382ee6c598640a783941cb2d747491, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!1 &1463890975 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7578511202283598223, guid: ef1e188259d03497e94c58c409256531, type: 3}
@@ -817,6 +831,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponRange: 2
+  timeBetweenAttacks: 1
+  weaponDamage: 5
 --- !u!114 &1463890992
 MonoBehaviour:
   m_ObjectHideFlags: 0
