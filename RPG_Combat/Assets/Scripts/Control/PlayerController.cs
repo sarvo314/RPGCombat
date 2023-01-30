@@ -18,7 +18,6 @@ namespace RPG.Control
             if (InteractWithCombat()) return;
             if (InteractWithMovement()) return;
             Debug.Log("Cannot move");
-
         }
 
         private bool InteractWithCombat()
