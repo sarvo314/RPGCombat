@@ -15,7 +15,7 @@ namespace RPG.Combat
         [SerializeField]
         float weaponDamage = 5f;
 
-        Transform target;
+        Health target;
 
         float timeSinceLastAttack = 0f;
         private void Update()
@@ -23,10 +23,11 @@ namespace RPG.Combat
             timeSinceLastAttack += Time.deltaTime;
 
             if (target == null) return;
+            if (target.IsDead()) return;
             if (target != null && !GetIsInRange())
             {
                 //    //target = null;
-                GetComponent<Mover>().MoveTo(target.position);
+                GetComponent<Mover>().MoveTo(target.transform.position);
                 //    //target = null;
             }
             else
@@ -51,25 +52,28 @@ namespace RPG.Combat
 
         private bool GetIsInRange()
         {
-            return Vector3.Distance(transform.position, target.position) < weaponRange;
+            return Vector3.Distance(transform.position, target.transform.position) < weaponRange;
         }
 
         public void Attack(CombatTarget combatTarget)
         {
             Debug.Log("Hit " + combatTarget);
             GetComponent<ActionScheduler>().StartAction(this);
-            target = combatTarget.transform;
+            target = combatTarget.GetComponent<Health>();
         }
         public void Cancel()
         {
             target = null;
+            GetComponent<Animator>().SetTrigger("stopAttack");
         }
 
         //Animation Event
         void Hit()
         {
-            Health healthComponent = target.GetComponent<Health>();
-            healthComponent.TakeDamage(weaponDamage);
+            if (target != null)
+            {
+                target.TakeDamage(weaponDamage);
+            }
         }
     }
 
