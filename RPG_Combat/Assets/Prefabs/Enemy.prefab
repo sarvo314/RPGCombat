@@ -66,6 +66,26 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 6502636512970831122}
   m_SourcePrefab: {fileID: 100100000, guid: f6efcdb01f9e145b18efb6fd3752d069, type: 3}
+--- !u!1 &8860291879666778901 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4182029323149414774, guid: f6efcdb01f9e145b18efb6fd3752d069, type: 3}
+  m_PrefabInstance: {fileID: 4683630390068875875}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4047624611749253883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8860291879666778901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88b2a2a0709c64101815e6837607e5a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponRange: 2
+  timeBetweenAttacks: 1
+  weaponDamage: 5
 --- !u!4 &8860291879666778915 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4182029323149414720, guid: f6efcdb01f9e145b18efb6fd3752d069, type: 3}

@@ -5,6 +5,7 @@ using RPG.Combat;
 
 namespace RPG.Control
 {
+    [RequireComponent(typeof(Fighter))]
     public class PlayerController : MonoBehaviour
     {
         Mover mover;
@@ -27,17 +28,20 @@ namespace RPG.Control
             foreach (RaycastHit hit in hits)
             {
                 CombatTarget target = hit.transform.GetComponent<CombatTarget>();
-                if (!GetComponent<Fighter>().CanAttack(target))
+                if (target != null)
                 {
-                    continue;
-                }
-                Debug.Log("Interacted with combat");
+                    if (!GetComponent<Fighter>().CanAttack(target.gameObject))
+                    {
+                        continue;
+                    }
 
-                if (Input.GetMouseButtonDown(0))
-                {
-                    GetComponent<Fighter>().Attack(target);
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        GetComponent<Fighter>().Attack(target.gameObject);
+                    }
+                    return true;
                 }
-                return true;
+
             }
 
             Debug.Log("Not interacted with combat");
